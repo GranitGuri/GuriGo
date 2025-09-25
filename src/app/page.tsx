@@ -1,103 +1,191 @@
+// src/app/page.tsx
 import Image from "next/image";
-
 export default function Home() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+    <main className="min-h-screen bg-white text-gray-900">
+      {/* Header */}
+      <header className="sticky top-0 z-50 bg-white/80 backdrop-blur border-b">
+        <div className="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
+          <div className="flex items-center gap-3">
             <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
+              src="https://images.unsplash.com/photo-1517954278308-7b84c6e6f5a0?q=80&w=240&auto=format&fit=crop"
+              alt="Liefertransporter bei Nacht"
+              width={48}
+              height={40}
+              className="h-10 w-auto rounded"
+              priority
             />
-            Deploy now
-          </a>
+            <a href="/" className="font-semibold text-lg tracking-tight">
+              guri<span className="text-indigo-600">-go</span>
+            </a>
+          </div>
+          <nav className="hidden sm:flex gap-6 text-sm">
+            <a href="#features" className="hover:text-indigo-700">Features</a>
+            <a href="#kontakt" className="hover:text-indigo-700">Kontakt</a>
+            <a href="/impressum" className="hover:text-indigo-700">Impressum</a>
+          </nav>
           <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="/auftrag"
+            className="inline-flex items-center rounded-xl bg-indigo-600 px-3 py-2 text-sm font-medium text-white hover:bg-indigo-700"
           >
-            Read our docs
+            Auftrag vergeben
           </a>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
+      </header>
+
+      {/* Hero */}
+      <section className="relative overflow-hidden">
+        <div className="absolute inset-0 -z-10">
+          {/* Hintergrundbild eines Transporters auf der Autobahn (austauschbar) */}
+          <div
+            className="h-[70vh] w-full bg-center bg-cover"
+            style={{
+              backgroundImage:
+                "url('https://images.unsplash.com/photo-1517954278308-7b84c6e6f5a0?q=80&w=1920&auto=format&fit=crop')",
+            }}
           />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-white" />
+        </div>
+        <div className="mx-auto max-w-6xl px-4 py-14 sm:py-20">
+          <div className="max-w-2xl">
+            <span className="inline-flex items-center rounded-full bg-white/80 px-3 py-1 text-xs font-medium text-gray-700 ring-1 ring-white/60 backdrop-blur">
+              Schnell. Zuverlässig. Bundesweit.
+            </span>
+            <h1 className="mt-4 text-4xl sm:text-5xl font-bold leading-tight tracking-tight text-white drop-shadow">
+              Transport- und Kurieraufträge einfach online vergeben
+            </h1>
+            <p className="mt-4 text-base sm:text-lg text-white/90 max-w-xl">
+              Vom Abholort bis zur Zustellung – in wenigen Schritten einen Auftrag anlegen.
+            </p>
+            <div className="mt-6 flex flex-col sm:flex-row gap-3">
+              <a
+                href="/auftrag"
+                className="inline-flex justify-center rounded-xl bg-indigo-600 px-5 py-3 text-white font-medium hover:bg-indigo-700"
+              >
+                Auftrag vergeben
+              </a>
+              <a
+                href="#features"
+                className="inline-flex justify-center rounded-xl bg-white/90 px-5 py-3 font-medium text-gray-900 hover:bg-white"
+              >
+                Mehr erfahren
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Features */}
+      <section id="features" className="mx-auto max-w-6xl px-4 py-12 sm:py-16">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <FeatureCard
+            title="Mobile First"
+            desc="Layout, Typografie und Touch-Ziele sind auf Smartphones optimiert."
+            emoji="📱"
           />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
+          <FeatureCard
+            title="Blitzschnell"
+            desc="Statisch ausgeliefert über CDN – minimale Ladezeiten, starke Core Web Vitals."
+            emoji="⚡"
           />
-          Go to nextjs.org →
-        </a>
+          <FeatureCard
+            title="Einfach erweiterbar"
+            desc="Später leicht um Blog, Formulare oder SEO-Features ergänzbar."
+            emoji="🧩"
+          />
+        </div>
+      </section>
+
+      {/* Kontakt */}
+      <section id="kontakt" className="border-t bg-gray-50">
+        <div className="mx-auto max-w-2xl px-4 py-14">
+          <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight">Kontakt</h2>
+          <p className="mt-2 text-gray-600">
+            Sag kurz hallo – ich melde mich.
+          </p>
+
+          {/* Statisches Formular über Formspree (Endpoint gleich im nächsten Schritt einrichten) */}
+          <form
+            action="https://formspree.io/f/REPLACEME"
+            method="POST"
+            className="mt-6 grid gap-4"
+          >
+            {/* Honeypot gegen Spam */}
+            <input type="text" name="_gotcha" className="hidden" aria-hidden="true" />
+            <input type="hidden" name="_subject" value="Neue Anfrage über guri-go.com" />
+
+            <label className="grid gap-1">
+              <span className="text-sm font-medium">Name</span>
+              <input
+                name="name"
+                required
+                autoComplete="name"
+                className="rounded-xl border px-3 py-2 outline-none focus:ring-2 focus:ring-indigo-600"
+                placeholder="Dein Name"
+              />
+            </label>
+
+            <label className="grid gap-1">
+              <span className="text-sm font-medium">E-Mail</span>
+              <input
+                type="email"
+                name="email"
+                required
+                autoComplete="email"
+                className="rounded-xl border px-3 py-2 outline-none focus:ring-2 focus:ring-indigo-600"
+                placeholder="name@example.com"
+              />
+            </label>
+
+            <label className="grid gap-1">
+              <span className="text-sm font-medium">Nachricht</span>
+              <textarea
+                name="message"
+                required
+                rows={5}
+                className="rounded-xl border px-3 py-2 outline-none focus:ring-2 focus:ring-indigo-600"
+                placeholder="Worum geht’s?"
+              />
+            </label>
+
+            <button
+              type="submit"
+              className="inline-flex justify-center rounded-xl bg-indigo-600 px-5 py-3 text-white font-medium hover:bg-indigo-700"
+            >
+              Nachricht senden
+            </button>
+
+            {/* Fallback-Link (öffnet das E-Mail-Programm) */}
+            <div className="text-xs text-gray-500">
+              Oder per E-Mail:{" "}
+              <a className="underline" href="mailto:hello@guri-go.com?subject=Kontakt%20guri-go.com">
+                hello@guri-go.com
+              </a>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="border-t">
+        <div className="mx-auto max-w-6xl px-4 py-8 text-sm text-gray-500 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div>© {new Date().getFullYear()} guri-go.com — Alle Rechte vorbehalten.</div>
+          <div className="flex items-center gap-4">
+            <a className="hover:text-gray-700" href="#kontakt">Kontakt</a>
+            <a className="hover:text-gray-700" href="/impressum">Impressum</a>
+          </div>
+        </div>
       </footer>
+    </main>
+  );
+}
+
+function FeatureCard({ title, desc, emoji }: { title: string; desc: string; emoji: string }) {
+  return (
+    <div className="rounded-2xl border bg-white p-5 hover:shadow-sm transition-shadow">
+      <div className="text-2xl">{emoji}</div>
+      <h3 className="mt-2 text-lg font-semibold">{title}</h3>
+      <p className="mt-1 text-gray-600 text-sm">{desc}</p>
     </div>
   );
 }
