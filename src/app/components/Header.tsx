@@ -1,22 +1,23 @@
 // src/app/components/Header.tsx
+import Link from "next/link";
 export default function Header() {
   return (
     <header className="sticky top-0 z-50 bg-white/80 backdrop-blur border-b">
       <div className="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
-        <a href="/" className="font-semibold text-lg tracking-tight">
+        <Link href="/" className="font-semibold text-lg tracking-tight">
           guri<span className="text-indigo-600">-go</span>
-        </a>
+        </Link>
         <nav className="hidden sm:flex gap-6 text-sm">
-          <a href="/auftrag" className="hover:text-indigo-700">Auftrag</a>
-          <a href="/kontakt" className="hover:text-indigo-700">Kontakt</a>
-          <a href="/impressum" className="hover:text-indigo-700">Impressum</a>
+          <Link href="/auftrag" className="hover:text-indigo-700">Auftrag</Link>
+          <Link href="/kontakt" className="hover:text-indigo-700">Kontakt</Link>
+          <Link href="/impressum" className="hover:text-indigo-700">Impressum</Link>
         </nav>
-        <a
+        <Link
           href="/auftrag"
           className="inline-flex items-center rounded-xl bg-indigo-600 px-3 py-2 text-sm font-medium text-white hover:bg-indigo-700"
         >
           Auftrag vergeben
-        </a>
+        </Link>
       </div>
     </header>
   );

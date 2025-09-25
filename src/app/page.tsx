@@ -1,5 +1,5 @@
 // Neuaufbau der Startseite
-import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -7,20 +7,20 @@ export default function Home() {
       {/* Header */}
       <header className="fixed top-0 z-50 w-full bg-transparent">
         <div className="mx-auto max-w-6xl px-4 py-4 flex items-center justify-between">
-          <a href="/" className="font-semibold text-lg tracking-tight text-white">
+          <Link href="/" className="font-semibold text-lg tracking-tight text-white">
             guri<span className="text-white">-go</span>
-          </a>
+          </Link>
           <nav className="hidden sm:flex gap-6 text-sm text-white">
-            <a href="/auftrag" className="hover:text-white/90">Auftrag</a>
-            <a href="/kontakt" className="hover:text-white/90">Kontakt</a>
-            <a href="/impressum" className="hover:text-white/90">Impressum</a>
+            <Link href="/auftrag" className="hover:text-white/90">Auftrag</Link>
+            <Link href="/kontakt" className="hover:text-white/90">Kontakt</Link>
+            <Link href="/impressum" className="hover:text-white/90">Impressum</Link>
           </nav>
-          <a
+          <Link
             href="/auftrag"
             className="inline-flex items-center rounded-xl bg-white px-3 py-2 text-sm font-medium text-gray-900 hover:bg-white/90"
           >
             Auftrag vergeben
-          </a>
+          </Link>
         </div>
       </header>
 

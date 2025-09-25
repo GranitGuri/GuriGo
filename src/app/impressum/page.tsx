@@ -1,5 +1,6 @@
 // src/app/impressum/page.tsx
 import Header from "../components/Header";
+import Link from "next/link";
 export default function ImpressumPage() {
   return (
     <main className="min-h-screen bg-white text-gray-900">
@@ -45,7 +46,7 @@ export default function ImpressumPage() {
         </div>
 
         <div className="mt-8">
-          <a href="/" className="text-sm text-gray-600 hover:text-gray-800">Zurück zur Startseite</a>
+          <Link href="/" className="text-sm text-gray-600 hover:text-gray-800">Zurück zur Startseite</Link>
         </div>
       </section>
     </main>
