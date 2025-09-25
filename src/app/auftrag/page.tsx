@@ -1,4 +1,5 @@
 // src/app/auftrag/page.tsx
+import Link from "next/link";
 export default function AuftragPage() {
   return (
     <main className="min-h-screen bg-white text-gray-900">
@@ -124,7 +125,7 @@ export default function AuftragPage() {
           </label>
 
           <div className="flex items-center justify-between">
-            <a href="/" className="text-sm text-gray-600 hover:text-gray-800">Zurück</a>
+            <Link href="/" className="text-sm text-gray-600 hover:text-gray-800">Zurück</Link>
             <button
               type="submit"
               className="inline-flex justify-center rounded-xl bg-indigo-600 px-5 py-3 text-white font-medium hover:bg-indigo-700"
@@ -135,7 +136,7 @@ export default function AuftragPage() {
 
           <p className="text-xs text-gray-500">
             Mit dem Absenden bestätigst du die Verarbeitung deiner Daten gemäß unserer
-            <a className="underline ml-1" href="/impressum">Datenschutzhinweise</a>.
+            <Link className="underline ml-1" href="/impressum">Datenschutzhinweise</Link>.
           </p>
         </form>
       </section>
