@@ -5,19 +5,19 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-white text-gray-900">
       {/* Header */}
-      <header className="sticky top-0 z-50 bg-white/80 backdrop-blur border-b">
-        <div className="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
-          <a href="/" className="font-semibold text-lg tracking-tight">
-            guri<span className="text-indigo-600">-go</span>
+      <header className="fixed top-0 z-50 w-full bg-transparent">
+        <div className="mx-auto max-w-6xl px-4 py-4 flex items-center justify-between">
+          <a href="/" className="font-semibold text-lg tracking-tight text-white">
+            guri<span className="text-white">-go</span>
           </a>
-          <nav className="hidden sm:flex gap-6 text-sm">
-            <a href="/auftrag" className="hover:text-indigo-700">Auftrag</a>
-            <a href="/kontakt" className="hover:text-indigo-700">Kontakt</a>
-            <a href="/impressum" className="hover:text-indigo-700">Impressum</a>
+          <nav className="hidden sm:flex gap-6 text-sm text-white">
+            <a href="/auftrag" className="hover:text-white/90">Auftrag</a>
+            <a href="/kontakt" className="hover:text-white/90">Kontakt</a>
+            <a href="/impressum" className="hover:text-white/90">Impressum</a>
           </nav>
           <a
             href="/auftrag"
-            className="inline-flex items-center rounded-xl bg-indigo-600 px-3 py-2 text-sm font-medium text-white hover:bg-indigo-700"
+            className="inline-flex items-center rounded-xl bg-white px-3 py-2 text-sm font-medium text-gray-900 hover:bg-white/90"
           >
             Auftrag vergeben
           </a>
@@ -26,12 +26,13 @@ export default function Home() {
 
       {/* Hero mit großem Headerbild */}
       <section className="relative h-[75vh] overflow-hidden">
-        <Image
-          src="https://images.unsplash.com/photo-1517954278308-7b84c6e6f5a0?q=80&w=2400&auto=format&fit=crop"
-          alt="Transporter fährt bei Dämmerung auf der Autobahn"
-          fill
-          priority
-          className="object-cover"
+        <div
+          className="absolute inset-0 z-0 bg-center bg-cover"
+          style={{
+            backgroundImage:
+              "url('/images/delivery-van.webp'), url('/delivery-van.webp'), url('https://images.unsplash.com/photo-1517954278308-7b84c6e6f5a0?q=80&w=2400&auto=format&fit=crop')",
+          }}
+          aria-hidden="true"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-transparent" />
 
@@ -72,6 +73,21 @@ export default function Home() {
             <div className="text-2xl">📱</div>
             <h3 className="mt-2 text-lg font-semibold">Mobil optimiert</h3>
             <p className="mt-1 text-gray-600 text-sm">Beauftrage bequem vom Smartphone oder Desktop.</p>
+          </div>
+          <div className="rounded-2xl border bg-white p-6">
+            <div className="text-2xl">🌍</div>
+            <h3 className="mt-2 text-lg font-semibold">Lieferung europaweit</h3>
+            <p className="mt-1 text-gray-600 text-sm">Netzwerk und Routen für Ziele in ganz Europa.</p>
+          </div>
+          <div className="rounded-2xl border bg-white p-6">
+            <div className="text-2xl">🚀</div>
+            <h3 className="mt-2 text-lg font-semibold">Erfahrung in Expresslieferungen</h3>
+            <p className="mt-1 text-gray-600 text-sm">Zeitkritische Transporte mit klaren SLAs.</p>
+          </div>
+          <div className="rounded-2xl border bg-white p-6">
+            <div className="text-2xl">💊</div>
+            <h3 className="mt-2 text-lg font-semibold">Erfahrung mit Medikamentenlieferungen</h3>
+            <p className="mt-1 text-gray-600 text-sm">Sorgfältige Handhabung und zuverlässige Zustellung sensibler Güter.</p>
           </div>
         </div>
       </section>

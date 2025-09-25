@@ -1,8 +1,10 @@
 // src/app/auftrag/page.tsx
 import Link from "next/link";
+import Header from "../components/Header";
 export default function AuftragPage() {
   return (
     <main className="min-h-screen bg-white text-gray-900">
+      <Header />
       <section className="mx-auto max-w-3xl px-4 py-10">
         <h1 className="text-3xl sm:text-4xl font-bold tracking-tight">Auftrag vergeben</h1>
         <p className="mt-2 text-gray-600">
@@ -75,6 +77,25 @@ export default function AuftragPage() {
 
           <div className="grid gap-1 sm:grid-cols-2 sm:gap-4">
             <label className="grid gap-1">
+              <span className="text-sm font-medium">Abholuhrzeit</span>
+              <input
+                type="time"
+                name="pickup_time"
+                className="rounded-xl border px-3 py-2 outline-none focus:ring-2 focus:ring-indigo-600"
+              />
+            </label>
+            <label className="grid gap-1">
+              <span className="text-sm font-medium">Ziel-Lieferzeit</span>
+              <input
+                type="time"
+                name="delivery_time"
+                className="rounded-xl border px-3 py-2 outline-none focus:ring-2 focus:ring-indigo-600"
+              />
+            </label>
+          </div>
+
+          <div className="grid gap-1 sm:grid-cols-2 sm:gap-4">
+            <label className="grid gap-1">
               <span className="text-sm font-medium">Abholort</span>
               <input
                 name="pickup"
@@ -110,6 +131,21 @@ export default function AuftragPage() {
                 name="weight"
                 className="rounded-xl border px-3 py-2 outline-none focus:ring-2 focus:ring-indigo-600"
                 placeholder="z. B. 500 kg"
+              />
+            </label>
+          </div>
+
+          <div className="grid gap-1 sm:grid-cols-2 sm:gap-4">
+            <label className="grid gap-1">
+              <span className="text-sm font-medium">Angebotener Kilometerpreis (€)</span>
+              <input
+                type="number"
+                name="price_per_km"
+                step="0.01"
+                min="0"
+                inputMode="decimal"
+                className="rounded-xl border px-3 py-2 outline-none focus:ring-2 focus:ring-indigo-600"
+                placeholder="z. B. 0,85"
               />
             </label>
           </div>
