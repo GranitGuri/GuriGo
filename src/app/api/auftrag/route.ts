@@ -52,13 +52,17 @@ export async function POST(req: NextRequest) {
       phone: process.env.CONTACT_PHONE || "+49 1573 4642843",
       vatId: process.env.CONTACT_VAT_ID || "DE000000000",
       impressumUrl: process.env.CONTACT_IMPRESSUM_URL || "https://guri-go.com/impressum",
+      logoUrl: `${req.nextUrl.origin}/favicon.ico`,
     };
 
     const senderEmail = data.email || "";
     const subjectInternal = `Neuer Transportauftrag von ${data.name || "Unbekannt"}`;
 
     const htmlInternal = `
-      <h2>Neuer Auftrag</h2>
+      <div style="display:flex;align-items:center;gap:10px;padding:8px 0 4px 0">
+        <img src="${contact.logoUrl}" alt="guri-go" width="24" height="24" style="border-radius:4px"/>
+        <h2 style="margin:0;font-size:18px">Neuer Auftrag</h2>
+      </div>
       <p><b>Name:</b> ${data.name || "-"}</p>
       <p><b>E-Mail:</b> ${data.email || "-"}</p>
       <p><b>Telefon:</b> ${data.phone || "-"}</p>
@@ -70,6 +74,11 @@ export async function POST(req: NextRequest) {
       <p><b>Ladung:</b> ${data.cargo || "-"}</p>
       <p><b>Gewicht:</b> ${data.weight || "-"}</p>
       <p><b>Angebotener Kilometerpreis:</b> ${data.price_per_km || "-"}</p>
+      ${data.vehicle ? `<div style="margin-top:8px"><b>Gewähltes Fahrzeug:</b> ${data.vehicle} (${data.vehicle_model || "-"})<br/>
+        <span style=\"color:#374151\">Max. Last:</span> ${data.vehicle_max_load || "-"} · <span style=\"color:#374151\">Paletten:</span> ${data.vehicle_pallets || "-"}<br/>
+        <span style=\"color:#374151\">Laderaum:</span> ${data.vehicle_cargo_size || "-"}<br/>
+        <span style=\"color:#374151\">Preise:</span> Anfahrt ${data.vehicle_price_base || "-"}, pro km ${data.vehicle_price_per_km || "-"}, Mindestfahrt ${data.vehicle_price_min || "-"}
+      </div>` : ""}
       <p><b>Hinweise:</b><br/>${(data.notes || "-").replace(/\n/g, "<br/>")}</p>
     `;
 
@@ -87,6 +96,14 @@ export async function POST(req: NextRequest) {
         weight: data.weight,
         price_per_km: data.price_per_km,
         notes: data.notes,
+        vehicle: data.vehicle,
+        vehicle_model: data.vehicle_model,
+        vehicle_max_load: data.vehicle_max_load,
+        vehicle_pallets: data.vehicle_pallets,
+        vehicle_cargo_size: data.vehicle_cargo_size,
+        vehicle_price_base: data.vehicle_price_base,
+        vehicle_price_per_km: data.vehicle_price_per_km,
+        vehicle_price_min: data.vehicle_price_min,
       },
       contact
     );
@@ -123,6 +140,14 @@ export async function POST(req: NextRequest) {
       "cargo",
       "weight",
       "price_per_km",
+      "vehicle",
+      "vehicle_model",
+      "vehicle_max_load",
+      "vehicle_pallets",
+      "vehicle_cargo_size",
+      "vehicle_price_base",
+      "vehicle_price_per_km",
+      "vehicle_price_min",
     ] as const;
     fields.forEach((f) => {
       const v = (data as Record<string, string | undefined>)[f];
@@ -149,6 +174,14 @@ type ConfirmData = {
   weight?: string;
   price_per_km?: string;
   notes?: string;
+  vehicle?: string;
+  vehicle_model?: string;
+  vehicle_max_load?: string;
+  vehicle_pallets?: string;
+  vehicle_cargo_size?: string;
+  vehicle_price_base?: string;
+  vehicle_price_per_km?: string;
+  vehicle_price_min?: string;
 };
 
 type ContactInfo = {
@@ -159,6 +192,7 @@ type ContactInfo = {
   phone: string;
   vatId?: string;
   impressumUrl?: string;
+  logoUrl?: string;
 };
 
 function renderConfirmationEmail(data: ConfirmData, contact: ContactInfo): { html: string; text: string } {
@@ -170,8 +204,11 @@ function renderConfirmationEmail(data: ConfirmData, contact: ContactInfo): { htm
   <div style="background:#f6f7f9;padding:24px;font-family:Inter,Segoe UI,Roboto,Arial,sans-serif;color:#111">
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:640px;margin:0 auto;background:#ffffff;border-radius:12px;overflow:hidden;border:1px solid #e6e8eb">
       <tr>
-        <td style="background:#111827;color:#fff;padding:20px 24px;font-size:18px;font-weight:600;">
-          guri-go – Auftragseingang bestaetigt
+        <td style="background:#111827;color:#fff;padding:16px 20px;font-size:18px;font-weight:600;">
+          <div style="display:flex;align-items:center;gap:10px">
+            <img src="${contact.logoUrl}" alt="guri-go" width="24" height="24" style="display:inline-block;border-radius:4px"/>
+            <span>guri-go – Auftragseingang bestaetigt</span>
+          </div>
         </td>
       </tr>
       <tr>
@@ -192,6 +229,17 @@ function renderConfirmationEmail(data: ConfirmData, contact: ContactInfo): { htm
             <tr><td style="padding:6px 0;color:#6b7280">Telefon</td><td style="padding:6px 0;color:#111">${esc(fmt(data.phone))}</td></tr>
             <tr><td style="padding:6px 0;color:#6b7280">E-Mail</td><td style="padding:6px 0;color:#111">${esc(fmt(data.email))}</td></tr>
           </table>
+
+          ${fmt(data.vehicle, "").trim() ? `
+          <div style=\"margin:18px 0 8px 0;font-weight:600\">Gewähltes Fahrzeug</div>
+          <table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" style=\"border-collapse:collapse;font-size:14px\">
+            <tr><td style=\"padding:6px 0;color:#6b7280;width:38%\">Typ</td><td style=\"padding:6px 0;color:#111\">${esc(fmt(data.vehicle))}</td></tr>
+            <tr><td style=\"padding:6px 0;color:#6b7280\">Modell</td><td style=\"padding:6px 0;color:#111\">${esc(fmt(data.vehicle_model))}</td></tr>
+            <tr><td style=\"padding:6px 0;color:#6b7280\">Max. Last</td><td style=\"padding:6px 0;color:#111\">${esc(fmt(data.vehicle_max_load))}</td></tr>
+            <tr><td style=\"padding:6px 0;color:#6b7280\">Paletten</td><td style=\"padding:6px 0;color:#111\">${esc(fmt(data.vehicle_pallets))}</td></tr>
+            <tr><td style=\"padding:6px 0;color:#6b7280\">Laderaum</td><td style=\"padding:6px 0;color:#111\">${esc(fmt(data.vehicle_cargo_size))}</td></tr>
+            <tr><td style=\"padding:6px 0;color:#6b7280\">Preise</td><td style=\"padding:6px 0;color:#111\">Anfahrt ${esc(fmt(data.vehicle_price_base))}, pro km ${esc(fmt(data.vehicle_price_per_km))}, Mindestfahrt ${esc(fmt(data.vehicle_price_min))}</td></tr>
+          </table>` : ""}
 
           ${fmt(data.notes, "").trim() ? `<div style="margin:16px 0 4px 0;font-weight:600">Hinweise</div>
             <div style=\"white-space:pre-wrap;color:#111;font-size:14px;line-height:1.55\">${esc(data.notes).replace(/\n/g, "<br/>")}</div>` : ""}
@@ -224,6 +272,13 @@ function renderConfirmationEmail(data: ConfirmData, contact: ContactInfo): { htm
     `- Preis/km: ${fmt(data.price_per_km)}\n` +
     `- Telefon: ${fmt(data.phone)}\n` +
     `- E-Mail: ${fmt(data.email)}\n` +
+    (fmt(data.vehicle, "").trim() ? `\nGewähltes Fahrzeug:\n` +
+      `- Typ: ${fmt(data.vehicle)}\n` +
+      `- Modell: ${fmt(data.vehicle_model)}\n` +
+      `- Max. Last: ${fmt(data.vehicle_max_load)}\n` +
+      `- Paletten: ${fmt(data.vehicle_pallets)}\n` +
+      `- Laderaum: ${fmt(data.vehicle_cargo_size)}\n` +
+      `- Preise: Anfahrt ${fmt(data.vehicle_price_base)}, pro km ${fmt(data.vehicle_price_per_km)}, Mindestfahrt ${fmt(data.vehicle_price_min)}\n` : "") +
     (fmt(data.notes, "").trim() ? `\nHinweise:\n${fmt(data.notes)}\n` : "") +
     `\nImpressum & Kontakt:\n` +
     `${contact.name}\n${contact.address} · ${contact.zipCity}\n` +

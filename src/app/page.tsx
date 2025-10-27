@@ -7,7 +7,8 @@ export default function Home() {
       {/* Header */}
       <header className="fixed top-0 z-50 w-full bg-transparent">
         <div className="mx-auto max-w-6xl px-4 py-4 flex items-center justify-between">
-          <Link href="/" className="font-semibold text-lg tracking-tight text-white">
+          <Link href="/" className="font-semibold text-lg tracking-tight text-white flex items-center gap-2">
+            <img src="/favicon.ico" alt="guri-go" className="h-6 w-6 rounded-sm" />
             guri<span className="text-white">-go</span>
           </Link>
           <nav className="hidden sm:flex gap-6 text-sm text-white">

@@ -1,23 +1,41 @@
 // src/app/kontakt/page.tsx
 import Header from "../components/Header";
 import Link from "next/link";
+import Logo from "../../../images/gurigoLogo.png";
+import CallBg from "../../../images/CallHintergrund.jpg";
+
 export default function KontaktPage() {
   return (
     <main className="min-h-screen bg-white text-gray-900">
       <Header />
       <section className="mx-auto max-w-3xl px-4 py-10">
-        <h1 className="text-3xl sm:text-4xl font-bold tracking-tight">Kontakt</h1>
-        <p className="mt-2 text-gray-600">Schreib uns eine kurze Nachricht – wir melden uns zeitnah.</p>
+        {/* Hero-Block mit Hintergrundbild bis zum Call-Button */}
+        <div
+          className="rounded-2xl overflow-hidden border"
+          style={{
+            backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,0.45), rgba(0,0,0,0.25)), url(${CallBg.src})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        >
+          <div className="p-6 sm:p-8">
+            <div className="flex items-center gap-3">
+              <img src={Logo.src} alt="guri-go" className="h-8 w-auto" />
+              <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-white">Kontakt</h1>
+            </div>
+            <p className="mt-2 text-white/90">Schreib uns eine kurze Nachricht – wir melden uns zeitnah.</p>
 
-        {/* Direktanruf: prominenter Button als erstes Element */}
-        <div className="mt-6">
-          <a
-            href="tel:+4915734642843"
-            aria-label="Jetzt anrufen: +49 1573 4642843"
-            className="inline-flex items-center justify-center rounded-xl bg-green-600 px-5 py-3 text-white font-medium hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-600 focus:ring-offset-2"
-          >
-            Jetzt anrufen: +49 1573 4642843
-          </a>
+            {/* Direktanruf: prominenter Button */}
+            <div className="mt-6">
+              <a
+                href="tel:+4915734642843"
+                aria-label="Jetzt anrufen: +49 1573 4642843"
+                className="inline-flex items-center justify-center rounded-xl bg-green-600 px-5 py-3 text-white font-medium hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-600 focus:ring-offset-2"
+              >
+                Jetzt anrufen: +49 1573 4642843
+              </a>
+            </div>
+          </div>
         </div>
 
         <form
@@ -81,4 +99,3 @@ export default function KontaktPage() {
     </main>
   );
 }
-

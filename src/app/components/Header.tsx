@@ -4,7 +4,8 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 bg-white/80 backdrop-blur border-b">
       <div className="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
-        <Link href="/" className="font-semibold text-lg tracking-tight">
+        <Link href="/" className="font-semibold text-lg tracking-tight flex items-center gap-2">
+          <img src="/favicon.ico" alt="guri-go" className="h-6 w-6 rounded-sm" />
           guri<span className="text-indigo-600">-go</span>
         </Link>
         <nav className="hidden sm:flex gap-6 text-sm">
