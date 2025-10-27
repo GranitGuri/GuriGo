@@ -19,9 +19,9 @@ export const metadata: Metadata = {
   },
   description: "Transporte einfach beauftragen – schnell, fair, zuverlässig.",
   icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon.ico",
-    apple: "/favicon.ico",
+    icon: ["/icon.png", "/favicon.ico"],
+    shortcut: ["/favicon.ico"],
+    apple: "/icon.png",
   },
   applicationName: "guri-go",
 };

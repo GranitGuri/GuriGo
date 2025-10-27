@@ -32,7 +32,7 @@ export default function AuftragBestaetigtPage({ searchParams = {} }: Props) {
       <Header />
       <section className="mx-auto max-w-3xl px-4 py-10">
         <div className="flex items-center gap-3">
-          <img src={Logo.src} alt="guri-go" className="h-8 w-auto" />
+          <img src={Logo.src} alt="guri-go" className="h-10 sm:h-12 md:h-14 w-auto" />
           <h1 className="text-3xl sm:text-4xl font-bold tracking-tight">Auftrag eingegangen</h1>
         </div>
         <p className="mt-2 text-gray-600">Vielen Dank! Wir haben deine Angaben erhalten und melden uns zeitnah mit einem Angebot.</p>

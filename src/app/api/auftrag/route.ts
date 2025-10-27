@@ -52,7 +52,7 @@ export async function POST(req: NextRequest) {
       phone: process.env.CONTACT_PHONE || "+49 1573 4642843",
       vatId: process.env.CONTACT_VAT_ID || "DE000000000",
       impressumUrl: process.env.CONTACT_IMPRESSUM_URL || "https://guri-go.com/impressum",
-      logoUrl: `${req.nextUrl.origin}/favicon.ico`,
+      logoUrl: `${req.nextUrl.origin}/icon.png`,
     };
 
     const senderEmail = data.email || "";
