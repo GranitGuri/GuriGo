@@ -9,6 +9,17 @@ export default function KontaktPage() {
         <h1 className="text-3xl sm:text-4xl font-bold tracking-tight">Kontakt</h1>
         <p className="mt-2 text-gray-600">Schreib uns eine kurze Nachricht – wir melden uns zeitnah.</p>
 
+        {/* Direktanruf: prominenter Button als erstes Element */}
+        <div className="mt-6">
+          <a
+            href="tel:+4915734642843"
+            aria-label="Jetzt anrufen: +49 1573 4642843"
+            className="inline-flex items-center justify-center rounded-xl bg-green-600 px-5 py-3 text-white font-medium hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-600 focus:ring-offset-2"
+          >
+            Jetzt anrufen: +49 1573 4642843
+          </a>
+        </div>
+
         <form
           action="https://formspree.io/f/REPLACEME"
           method="POST"
@@ -47,7 +58,7 @@ export default function KontaktPage() {
               required
               rows={5}
               className="rounded-xl border px-3 py-2 outline-none focus:ring-2 focus:ring-indigo-600"
-              placeholder="Worum geht’s?"
+              placeholder="Worum geht's?"
             />
           </label>
 
@@ -59,7 +70,7 @@ export default function KontaktPage() {
           </button>
 
           <div className="text-xs text-gray-500">
-            Oder per E-Mail: <a className="underline" href="mailto:hello@guri-go.com">hello@guri-go.com</a>
+            Oder per E-Mail: <a className="underline" href="mailto:hello@guri-go.com">hello@guri-go.com</a> · Telefon: <a className="underline" href="tel:+4915734642843">+49 1573 4642843</a>
           </div>
         </form>
 
@@ -70,5 +81,4 @@ export default function KontaktPage() {
     </main>
   );
 }
-
 

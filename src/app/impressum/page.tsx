@@ -20,7 +20,7 @@ export default function ImpressumPage() {
           <div>
             <div className="font-semibold">Kontakt</div>
             <div>E-Mail: hello@guri-go.com</div>
-            <div>Telefon: +49 170 0000000</div>
+            <div>Telefon: <a className="underline" href="tel:+4915734642843">+49 1573 4642843</a></div>
           </div>
 
           <div>

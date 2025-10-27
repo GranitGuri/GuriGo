@@ -1,7 +1,29 @@
 // src/app/auftrag/page.tsx
 import Link from "next/link";
 import Header from "../components/Header";
+
 export default function AuftragPage() {
+  const vehicles = [
+    {
+      title: "PKW Kombi",
+      model: "Beispiel: E‑Klasse",
+      maxLoad: "300 kg",
+      pallets: "1 Palette (Euro)",
+      cargoSize: "L 180 cm × B 100 cm × H 80 cm",
+      prices: { base: "4 €", perKm: "1,15 € / km", min: "59,00 €" },
+      image: "/images/delivery-van.webp",
+    },
+    {
+      title: "Transporter Klein",
+      model: "Beispiel: Kastenwagen",
+      maxLoad: "800 kg",
+      pallets: "2–3 Paletten (Euro)",
+      cargoSize: "L 250 cm × B 130 cm × H 120 cm",
+      prices: { base: "8 €", perKm: "1,45 € / km", min: "79,00 €" },
+      image: "/images/delivery-van.webp",
+    },
+  ];
+
   return (
     <main className="min-h-screen bg-white text-gray-900">
       <Header />
@@ -10,6 +32,53 @@ export default function AuftragPage() {
         <p className="mt-2 text-gray-600">
           Bitte fülle die wichtigsten Informationen aus. Wir melden uns umgehend.
         </p>
+
+        {/* Fahrzeug-Infos */}
+        <div className="mt-6 grid gap-6">
+          {vehicles.map((v, i) => (
+            <div key={i} className="rounded-2xl border p-4 bg-white shadow-sm">
+              <div className="grid grid-cols-1 sm:grid-cols-5 gap-4">
+                <div className="sm:col-span-2">
+                  {/* Platzhalter-Bild: Hero-Bild der Startseite */}
+                  <div
+                    className="aspect-[4/3] w-full rounded-xl bg-center bg-cover border"
+                    style={{ backgroundImage: `url('${v.image}'), url('/delivery-van.webp')` }}
+                    aria-label={v.title}
+                  />
+                </div>
+                <div className="sm:col-span-3 text-sm">
+                  <div className="flex items-baseline justify-between">
+                    <h3 className="text-base font-semibold">{v.title}</h3>
+                    <span className="text-gray-500">{v.model}</span>
+                  </div>
+                  <dl className="mt-3 grid grid-cols-2 gap-x-4 gap-y-2">
+                    <div>
+                      <dt className="text-gray-500">Max. Last</dt>
+                      <dd className="font-medium">{v.maxLoad}</dd>
+                    </div>
+                    <div>
+                      <dt className="text-gray-500">Paletten</dt>
+                      <dd className="font-medium">{v.pallets}</dd>
+                    </div>
+                    <div className="col-span-2">
+                      <dt className="text-gray-500">Laderaum (Maße)</dt>
+                      <dd className="font-medium">{v.cargoSize}</dd>
+                    </div>
+                  </dl>
+                  <div className="mt-3 text-sm">
+                    <div className="text-gray-500">Preise</div>
+                    <div className="mt-1 grid grid-cols-3 gap-3">
+                      <div><span className="text-gray-500">Anfahrt</span><div className="font-medium">{v.prices.base}</div></div>
+                      <div><span className="text-gray-500">pro km</span><div className="font-medium">{v.prices.perKm}</div></div>
+                      <div><span className="text-gray-500">Mindestfahrt</span><div className="font-medium">{v.prices.min}</div></div>
+                    </div>
+                    <p className="mt-1 text-gray-500 text-xs">Stunden- & Tagespreise auf Anfrage.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
 
         <form
           action="/api/auftrag"
@@ -62,7 +131,7 @@ export default function AuftragPage() {
                 required
                 autoComplete="tel"
                 className="rounded-xl border px-3 py-2 outline-none focus:ring-2 focus:ring-indigo-600"
-                placeholder="z. B. +49 170 1234567"
+                placeholder="z. B. +49 1573 4642843"
               />
             </label>
             <label className="grid gap-1">
@@ -135,20 +204,7 @@ export default function AuftragPage() {
             </label>
           </div>
 
-          <div className="grid gap-1 sm:grid-cols-2 sm:gap-4">
-            <label className="grid gap-1">
-              <span className="text-sm font-medium">Angebotener Kilometerpreis (€)</span>
-              <input
-                type="number"
-                name="price_per_km"
-                step="0.01"
-                min="0"
-                inputMode="decimal"
-                className="rounded-xl border px-3 py-2 outline-none focus:ring-2 focus:ring-indigo-600"
-                placeholder="z. B. 0,85"
-              />
-            </label>
-          </div>
+          {/* Preisfeld entfernt – Preise sind oben ausgewiesen */}
 
           <label className="grid gap-1">
             <span className="text-sm font-medium">Hinweise</span>
@@ -179,5 +235,4 @@ export default function AuftragPage() {
     </main>
   );
 }
-
 
