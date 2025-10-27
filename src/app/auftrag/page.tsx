@@ -12,7 +12,7 @@ export default function AuftragPage() {
         </p>
 
         <form
-          action="https://formspree.io/f/REPLACEME"
+          action="/api/auftrag"
           method="POST"
           className="mt-8 grid gap-5"
         >
