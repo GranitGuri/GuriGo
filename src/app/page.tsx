@@ -1,6 +1,7 @@
 // Neuaufbau der Startseite
 import Link from "next/link";
 import Icon from "../../images/gurigoIcon.png";
+import Background from "../../images/background.webp";
 
 export default function Home() {
   return (
@@ -31,8 +32,7 @@ export default function Home() {
         <div
           className="absolute inset-0 z-0 bg-center bg-cover"
           style={{
-            backgroundImage:
-              "url('/images/delivery-van.webp'), url('/delivery-van.webp'), url('https://images.unsplash.com/photo-1517954278308-7b84c6e6f5a0?q=80&w=2400&auto=format&fit=crop')",
+            backgroundImage: `url('${Background.src}')`,
           }}
           aria-hidden="true"
         />

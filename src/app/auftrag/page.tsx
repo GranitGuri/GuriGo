@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Header from "../components/Header";
 import Logo from "../../../images/gurigoLogo.png";
+import Background from "../../../images/background.webp";
 import { useRef, useState } from "react";
 
 export default function AuftragPage() {
@@ -14,7 +15,7 @@ export default function AuftragPage() {
       pallets: "1 Palette (Euro)",
       cargoSize: "L 180 cm x B 100 cm x H 80 cm",
       prices: { base: "4 EUR", perKm: "1,15 EUR / km", min: "59,00 EUR" },
-      image: "/images/delivery-van.webp",
+      image: Background.src,
     },
     {
       title: "Transporter Klein",
@@ -23,7 +24,7 @@ export default function AuftragPage() {
       pallets: "2-3 Paletten (Euro)",
       cargoSize: "L 250 cm x B 130 cm x H 120 cm",
       prices: { base: "8 EUR", perKm: "1,45 EUR / km", min: "79,00 EUR" },
-      image: "/images/delivery-van.webp",
+      image: Background.src,
     },
   ];
 
@@ -76,7 +77,7 @@ export default function AuftragPage() {
                   {/* Platzhalter-Bild: Hero-Bild der Startseite */}
                   <div
                     className="aspect-[4/3] w-full rounded-xl bg-center bg-cover border"
-                    style={{ backgroundImage: `url('${v.image}'), url('/delivery-van.webp')` }}
+                    style={{ backgroundImage: `url('${v.image}')` }}
                     aria-label={v.title}
                   />
                 </div>
